@@ -12,7 +12,7 @@ class HomePage extends BasePage {
   }
 
   async goto() {
-    await this.page.goto(`/`);
+    await this.page.goto('/');
   }
 
   async redmineBookElClick() {

@@ -15,7 +15,7 @@ class LoginPage extends BasePage {
   }
 
   async goto() {
-    await this.page.goto(`/login`);
+    await this.page.goto('/login');
   }
 
   async inputLoginValid() {

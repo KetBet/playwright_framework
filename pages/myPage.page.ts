@@ -10,7 +10,7 @@ class MyPagePage extends BasePage {
   }
 
   async goto() {
-    await this.page.goto(`/my/page`);
+    await this.page.goto('/my/page');
   }
 
   async jumpToProject() {

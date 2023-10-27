@@ -16,7 +16,7 @@ class RegistrationPage extends BasePage {
   }
 
   async goto() {
-    await this.page.goto(`/account/register`);
+    await this.page.goto('/account/register');
   }
 
   async enterLogin() {

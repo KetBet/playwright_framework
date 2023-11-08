@@ -31,17 +31,16 @@ test.describe("home page", () => {
   test("should add new issue", async ({ page }) => {
     const homePage = new HomePage(page);
 
-    await page.route("**/*", (route) => {
-      route.request().url().startsWith("https://googleads.")
-        ? route.abort()
-        : route.continue();
-      return;
-    });
+    await homePage.closeAds();
 
     await homePage.goto();
     await homePage.clickIssueLink();
+
+    await expect(await homePage.getIssuesTable()).toBeVisible();
+
     await homePage.addNewIssue();
 
     await expect(page).toHaveURL(`/projects/redmine/issues/new`);
+    await expect(await homePage.getNewIssueForm()).toBeVisible();
   });
 });

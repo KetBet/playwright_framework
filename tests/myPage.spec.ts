@@ -12,17 +12,13 @@ test.describe("my page", () => {
   test("jump to a project", async ({ page }) => {
     const myPagePage = new MyPagePage(page);
 
-    await page.route("**/*", (route) => {
-      route.request().url().startsWith("https://googleads.")
-        ? route.abort()
-        : route.continue();
-      return;
-    });
+    await myPagePage.closeAds();
 
     await myPagePage.goto();
     await myPagePage.jumpToProject();
     await myPagePage.selectAllProjects();
 
     await expect(page).toHaveTitle(/Projects/);
+    await expect(await myPagePage.getProjectRedmine()).toBeVisible();
   });
 });

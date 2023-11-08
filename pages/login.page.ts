@@ -1,28 +1,26 @@
 import { type Page } from "@playwright/test";
 import dataLayer from "../dataLayer.json";
-import { faker } from "@faker-js/faker";
 import BasePage from "./base.page";
 
 const loginInputField = "#username";
 const passwordInputField = "#password";
 const loginButtonEl = "#login-submit";
 
-const randomName = faker.person.firstName();
-
 class LoginPage extends BasePage {
   constructor(page: Page) {
     super(page);
+    this.page = page;
   }
 
   async goto() {
-    await this.page.goto('/login');
+    await super.goto('login');
   }
 
   async inputLoginValid() {
     await this.page.locator(loginInputField).fill(dataLayer.login);
   }
 
-  async inputLoginInvalid() {
+  async inputLoginInvalid(randomName: string) {
     await this.page.locator(loginInputField).fill(randomName);
   }
 

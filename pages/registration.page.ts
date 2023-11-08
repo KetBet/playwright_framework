@@ -13,10 +13,11 @@ const submitButton = "input[type=submit]";
 class RegistrationPage extends BasePage {
   constructor(page: Page) {
     super(page);
+    this.page = page;
   }
 
   async goto() {
-    await this.page.goto('/account/register');
+    await super.goto('account/register');
   }
 
   async enterLogin() {
